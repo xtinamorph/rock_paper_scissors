@@ -2,28 +2,48 @@ console.log("Hello World!")
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); 
     if (num === 0) {
-        return 'Rock'; 
+        return 'rock'; 
     } else if (num === 1) {
-        return 'Paper'; 
+        return 'paper'; 
     } else {
-        return 'Scissors'
+        return 'scissors'
     }
  }
 
 console.log(getComputerChoice()) 
 function getHumanChoice() {
     let choice = prompt("Rock, Paper, or Scissors?");
-    if (choice === "Rock") {
-        return 'Rock' 
+    if (choice == "rock") {
+        return 'rock' 
     } 
-    else if (choice === 'Paper') {
-        return 'Paper'
+    else if (choice == 'paper') {
+        return 'paper'
     }
     else {
-        return 'Scissors'
+        return 'scissors'
     }
 } 
 console.log(getHumanChoice())
 
-const humanScore = 0
-const computerScore = 0
+let humanScore = 0
+let computerScore = 0 
+
+function playRound(humanChoice, computerChoice) {
+humanChoice = humanChoice.toLowerCase(); 
+if (
+    (humanChoice === 'rock' && computerChoice === 'scissors') || 
+    (humanChoice === 'paper' && computerChoice === 'rock') || 
+    (humanChoice === 'scissors' && computerChoice === 'paper') 
+) {return console.log(`You Win! ${humanChoice} beats ${computerChoice}.`); 
+}else if (humanChoice === computerChoice) {
+    return console.log("It's a tie!"); 
+ } else {
+        return console.log(`You lose! ${computerChoice} beats ${humanChoice}.`); 
+    } 
+}
+
+
+const humanSelection = getHumanChoice() 
+const computerSelection = getComputerChoice() 
+
+playRound(humanSelection, computerSelection)
