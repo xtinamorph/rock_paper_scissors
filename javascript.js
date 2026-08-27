@@ -7,29 +7,31 @@ function getComputerChoice() {
 
 let humanScore = 0
 let computerScore = 0 
+const div = document.querySelector('div');
+const p = document.createElement("p");
+div.appendChild(p);
 function playRound(humanChoice, computerChoice) {
 if (
     (humanChoice === 'rock' && computerChoice === 'scissors') || 
     (humanChoice === 'paper' && computerChoice === 'rock') || 
     (humanChoice === 'scissors' && computerChoice === 'paper') 
 ) { ++humanScore
-    return console.log(`You Win! ${humanChoice} beats ${computerChoice}.`); 
+    return p.textContent = (`You Win! ${humanChoice} beats ${computerChoice}.`); 
 }else if (humanChoice === computerChoice) {
-    return console.log("It's a tie!"); 
+    return p.textContent = ("It's a tie!"); 
  } else { 
         ++computerScore
-        return console.log(`You lose! ${computerChoice} beats ${humanChoice}.`); 
+        return p.textContent = (`You lose! ${computerChoice} beats ${humanChoice}.`); 
     } 
 }
 
 function playGame() {
-   
-   
-    for (let i = 1; i <=5; i++) {
+   // for (let i = 1; i <=5; i++) {
         const playerInput = prompt("Rock, paper or scissors?").toLowerCase();
-        const computerInput = getComputerChoice();
+
+      // const computerInput = getComputerChoice();
         playRound(playerInput, computerInput);
-    }
+    //}
     if (humanScore > computerScore) {
         console.log("Congrats! You won!");
     }else if (humanScore < computerScore) {
@@ -38,13 +40,14 @@ function playGame() {
         console.log("Its a tie!");
     }
 }
-playGame();
+//playGame();
 console.log(humanScore);
 console.log(computerScore);
-
-const rock = document.getElementById("rock"); 
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors"); 
-rock.addEventListener("click" , playRound("rock", computerChoice));
-paper.addEventListener("click", playRound("paper", computerChoice));
-scissors.addEventListener("click", playRound("scissors", computerChoice));
+document.addEventListener('click', (event) => {
+    let playerClick = event.target.id; 
+    console.log(playerClick);
+    let computerClick = getComputerChoice();
+    playRound(playerClick, computerClick); 
+    console.log(humanScore);
+    console.log(computerScore);
+});
