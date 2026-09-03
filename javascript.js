@@ -9,22 +9,28 @@ let humanScore = 0
 let computerScore = 0 
 const div = document.querySelector('div');
 const p = document.createElement("p");
-div.appendChild(p);
+const score = document.createElement("p");
+score.textContent = `human score: ${humanScore} computer score: ${computerScore}`;
+//div.appendChild(p);
+div.append(p);
 function playRound(humanChoice, computerChoice) {
 if (
     (humanChoice === 'rock' && computerChoice === 'scissors') || 
     (humanChoice === 'paper' && computerChoice === 'rock') || 
     (humanChoice === 'scissors' && computerChoice === 'paper') 
-) { ++humanScore
+) { ++humanScore; 
+    score.textContent = `human score: ${humanScore} computer score: ${computerScore}`;
     return p.textContent = (`You Win! ${humanChoice} beats ${computerChoice}.`); 
 }else if (humanChoice === computerChoice) {
     return p.textContent = ("It's a tie!"); 
  } else { 
         ++computerScore
+        score.textContent = `human score: ${humanScore} computer score: ${computerScore}`;
         return p.textContent = (`You lose! ${computerChoice} beats ${humanChoice}.`); 
     } 
 }
-
+div.append(score);
+console.log(humanScore);
 function playGame() {
    // for (let i = 1; i <=5; i++) {
         const playerInput = prompt("Rock, paper or scissors?").toLowerCase();
