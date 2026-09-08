@@ -13,6 +13,16 @@ const score = document.createElement("p");
 score.textContent = `human score: ${humanScore} computer score: ${computerScore}`;
 //div.appendChild(p);
 div.append(p);
+
+function checkWinner() {
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore === 5) {
+            console.log("you won");
+        } else {
+            console.log("you lost");
+        }
+    }
+}
 function playRound(humanChoice, computerChoice) {
 if (
     (humanChoice === 'rock' && computerChoice === 'scissors') || 
@@ -27,33 +37,30 @@ if (
         ++computerScore
         score.textContent = `human score: ${humanScore} computer score: ${computerScore}`;
         return p.textContent = (`You lose! ${computerChoice} beats ${humanChoice}.`); 
-    } 
+    }  
 }
 div.append(score);
-console.log(humanScore);
-function playGame() {
-   // for (let i = 1; i <=5; i++) {
-        const playerInput = prompt("Rock, paper or scissors?").toLowerCase();
 
-      // const computerInput = getComputerChoice();
-        playRound(playerInput, computerInput);
-    //}
-    if (humanScore > computerScore) {
-        console.log("Congrats! You won!");
-    }else if (humanScore < computerScore) {
-        console.log("Bummer, Computer wins!");
-    } else {
-        console.log("Its a tie!");
+const finalScore = document.createElement("p");
+div.append(finalScore);
+function checkWinner() {
+    if (humanScore === 5 || computerScore === 5) {
+        if (humanScore === 5) {
+            finalScore.textContent = "Congrats! You Won!";
+        } else {
+            finalScore.textContent = "Bummer! You Lost!";
+        }
     }
-}
-//playGame();
-console.log(humanScore);
-console.log(computerScore);
+} 
+
+//console.log(humanScore);
+
+//console.log(humanScore);
+//console.log(computerScore);
 document.addEventListener('click', (event) => {
     let playerClick = event.target.id; 
-    console.log(playerClick);
+   // console.log(playerClick);
     let computerClick = getComputerChoice();
     playRound(playerClick, computerClick); 
-    console.log(humanScore);
-    console.log(computerScore);
+    checkWinner();
 });
